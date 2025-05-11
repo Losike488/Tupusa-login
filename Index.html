@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tupusa Login</title>
+</head>
+<body>
+  <h2>Student Login information</h2>
+  <form id="loginForm">
+    <input type="text" name="fullName" placeholder="Full names" required><br>
+    <input type="text" name="admissionNumber" placeholder="Admission number" required><br>
+    <input type="password" name="password" placeholder="Password" required><br>
+    <button type="submit">Login</button>
+  </form>
+
+  <script>
+  document.getElementById("loginForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const fullName = e.target.fullName.value;
+    const admissionNumber = e.target.admissionNumber.value;
+    const password = e.target.password.value;
+
+    await fetch("http://localhost:3000/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fullName, admissionNumber, password })
+    });
+
+    alert("User saved!");
+  });
+  </script>
+</body>
+</html>
